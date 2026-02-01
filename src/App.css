@@ -1,0 +1,356 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+  min-height: 100vh;
+  color: #fff;
+}
+
+/* Login Screen */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.login-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  border-radius: 20px;
+  padding: 50px;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.login-box h1 {
+  font-size: 2rem;
+  background: linear-gradient(135deg, #ffd700, #ffed4a, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+}
+
+.login-box .subtitle {
+  color: #888;
+  margin-bottom: 30px;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 15px 20px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.login-box input:focus {
+  border-color: #ffd700;
+}
+
+.login-box input::placeholder {
+  color: #666;
+}
+
+/* Main Container */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  padding: 30px 20px;
+}
+
+header h1 {
+  font-size: 2.2rem;
+  background: linear-gradient(135deg, #ffd700, #ffed4a, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #888;
+  font-size: 1rem;
+}
+
+/* Score Board */
+.score-board {
+  background: rgba(255, 215, 0, 0.08);
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  border-radius: 16px;
+  padding: 20px 25px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.username {
+  font-weight: 600;
+  color: #fff;
+}
+
+.btn-small {
+  padding: 6px 12px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #888;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.btn-small:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #fff;
+}
+
+.score-display {
+  font-size: 1.2rem;
+  color: #ccc;
+}
+
+.score-display .score {
+  color: #ffd700;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 600;
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, #ffd700, #ffed4a);
+  color: #1a1a2e;
+}
+
+.btn-gold:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+}
+
+.btn-gold:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid rgba(255, 215, 0, 0.5);
+  color: #ffd700;
+}
+
+.btn-outline:hover {
+  background: rgba(255, 215, 0, 0.1);
+}
+
+.locked-badge {
+  padding: 12px 24px;
+  background: rgba(46, 204, 113, 0.2);
+  border: 2px solid #2ecc71;
+  border-radius: 8px;
+  color: #2ecc71;
+  font-weight: 600;
+}
+
+/* Status Bar */
+.status-bar {
+  text-align: center;
+  padding: 15px 20px;
+  background: rgba(255, 215, 0, 0.08);
+  border-radius: 12px;
+  margin-bottom: 25px;
+  font-size: 1rem;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.status-bar.locked {
+  background: rgba(46, 204, 113, 0.1);
+  border-color: rgba(46, 204, 113, 0.3);
+}
+
+.progress-text {
+  color: #888;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+/* Categories */
+.categories {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.category {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  padding: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.category h2 {
+  font-size: 1.2rem;
+  margin-bottom: 18px;
+  color: #ffd700;
+}
+
+.nominees {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.nominee {
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+}
+
+.nominee:hover {
+  border-color: rgba(255, 215, 0, 0.4);
+  background: rgba(255, 215, 0, 0.05);
+}
+
+.nominee.selected {
+  border-color: #ffd700;
+  background: rgba(255, 215, 0, 0.12);
+}
+
+.nominee.winner {
+  border-color: #2ecc71;
+  background: rgba(46, 204, 113, 0.15);
+  position: relative;
+}
+
+.nominee.winner::after {
+  content: '🏆';
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  font-size: 1.2rem;
+}
+
+.nominee.correct {
+  border-color: #2ecc71;
+  background: rgba(46, 204, 113, 0.2);
+}
+
+.nominee.incorrect {
+  border-color: #e74c3c;
+  background: rgba(231, 76, 60, 0.15);
+  opacity: 0.8;
+}
+
+.nominee .artist {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 3px;
+}
+
+.nominee .work {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+/* Locked state */
+.categories.locked .nominee {
+  cursor: default;
+}
+
+.categories.locked .nominee:hover {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.categories.locked .nominee.selected:hover {
+  border-color: #ffd700;
+  background: rgba(255, 215, 0, 0.12);
+}
+
+.categories.locked .nominee.winner:hover {
+  border-color: #2ecc71;
+  background: rgba(46, 204, 113, 0.15);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  header h1 {
+    font-size: 1.6rem;
+  }
+
+  .score-board {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .nominees {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .login-box {
+    padding: 30px 20px;
+  }
+
+  .login-box h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .nominees {
+    grid-template-columns: 1fr;
+  }
+}
