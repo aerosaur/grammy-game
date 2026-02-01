@@ -237,6 +237,33 @@ button {
   color: var(--bg-secondary);
 }
 
+.btn-google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: var(--space-3) var(--space-5);
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  color: #1f1f1f;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all 0.1s;
+  text-transform: none;
+}
+
+.btn-google:hover {
+  background: #f8f8f8;
+  border-color: var(--text-muted);
+}
+
+.btn-google svg {
+  flex-shrink: 0;
+}
+
 .locked-badge {
   padding: var(--space-3) var(--space-5);
   background: var(--success);
