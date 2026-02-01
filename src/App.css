@@ -279,6 +279,53 @@ button {
   opacity: 0.8;
 }
 
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+/* Countdown Timer
+   ========================================================================== */
+
+.countdown {
+  font-size: 11px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+/* Login Screen Countdown Banner */
+.countdown-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  margin-bottom: var(--space-5);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-light);
+}
+
+.countdown-label {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.countdown-time {
+  font-size: 18px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+
 /* Categories
    ========================================================================== */
 
@@ -463,6 +510,16 @@ footer {
 
   .category {
     padding: var(--space-4);
+  }
+
+  .status-row {
+    flex-direction: column;
+    gap: var(--space-2);
+    text-align: center;
+  }
+
+  .countdown-time {
+    font-size: 16px;
   }
 }
 
@@ -760,4 +817,241 @@ footer {
 
 .mono {
   font-variant-numeric: tabular-nums;
+}
+
+/* ==========================================================================
+   ADMIN PANEL STYLES
+   ========================================================================== */
+
+.admin-container {
+  max-width: 1200px;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.admin-back-link {
+  display: block;
+  margin-top: var(--space-4);
+  font-size: 11px;
+  color: var(--text-muted);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.admin-back-link:hover {
+  color: var(--text-primary);
+}
+
+.login-box input.error {
+  border-color: var(--error);
+}
+
+.error-text {
+  font-size: 11px;
+  color: var(--error);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: calc(-1 * var(--space-2));
+}
+
+.admin-status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-4) var(--space-5);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  margin-bottom: var(--space-4);
+}
+
+.admin-progress {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.admin-count {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.admin-realtime {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 10px;
+  color: var(--success);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.admin-instructions {
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-light);
+  margin-bottom: var(--space-5);
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.admin-categories {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.admin-category {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  padding: var(--space-4);
+  transition: all 0.1s;
+}
+
+.admin-category.has-winner {
+  border-color: var(--success);
+  background: #f8fcf8;
+}
+
+.admin-category.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.admin-category-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.admin-category h2 {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.admin-category.has-winner h2 {
+  color: var(--success);
+}
+
+.admin-remove-btn {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background: var(--error);
+  border: none;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s;
+}
+
+.admin-remove-btn:hover {
+  background: #aa0000;
+}
+
+.admin-nominees {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--space-2);
+}
+
+.admin-nominee {
+  position: relative;
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  cursor: pointer;
+  transition: all 0.1s;
+  text-align: left;
+  font-family: inherit;
+}
+
+.admin-nominee:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: #fff8f5;
+}
+
+.admin-nominee:disabled {
+  cursor: wait;
+}
+
+.admin-nominee.winner {
+  border-color: var(--success);
+  border-width: 2px;
+  background: #e8f5e9;
+  padding: calc(var(--space-3) - 1px) calc(var(--space-4) - 1px);
+}
+
+.admin-nominee-artist {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.admin-nominee-work {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.admin-winner-badge {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  width: 16px;
+  height: 16px;
+  background: var(--success);
+  color: #ffffff;
+  font-size: 9px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0;
+}
+
+/* Admin Mobile Responsive
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  .admin-header {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .admin-status-bar {
+    flex-direction: column;
+    gap: var(--space-3);
+    text-align: center;
+  }
+
+  .admin-nominees {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 400px) {
+  .admin-nominees {
+    grid-template-columns: 1fr;
+  }
 }

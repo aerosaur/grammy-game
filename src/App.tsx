@@ -10,6 +10,9 @@ type Predictions = Record<string, string>
 type Winners = Record<string, string>
 type ViewMode = 'predictions' | 'results'
 
+// Lockout time constant: Feb 1, 2026 at 7:45pm ET = Feb 2, 2026 00:45 UTC
+const LOCKOUT_TIME = new Date('2026-02-02T00:45:00Z')
+
 // Helper to find category and nominee details
 function getCategoryById(categoryId: string): Category | undefined {
   return categories.find(c => c.id === categoryId)
@@ -24,12 +27,35 @@ function getNomineeName(categoryId: string, nomineeId: string): { artist: string
 // Check if predictions should be locked based on time
 // Lockout time: 7:45pm ET on February 1, 2026
 function isPastLockoutTime(): boolean {
+  return new Date() >= LOCKOUT_TIME
+}
+
+// Calculate time remaining until lockout
+function getTimeRemaining(): { hours: number; minutes: number; seconds: number; total: number } {
   const now = new Date()
-  // Create lockout time: Feb 1, 2026 at 7:45pm ET
-  // ET is UTC-5 (EST) or UTC-4 (EDT). Feb 1 is EST (UTC-5)
-  // 7:45pm ET = 00:45 UTC on Feb 2, 2026
-  const lockoutTime = new Date('2026-02-02T00:45:00Z')
-  return now >= lockoutTime
+  const total = LOCKOUT_TIME.getTime() - now.getTime()
+
+  if (total <= 0) {
+    return { hours: 0, minutes: 0, seconds: 0, total: 0 }
+  }
+
+  const seconds = Math.floor((total / 1000) % 60)
+  const minutes = Math.floor((total / 1000 / 60) % 60)
+  const hours = Math.floor(total / 1000 / 60 / 60)
+
+  return { hours, minutes, seconds, total }
+}
+
+// Format countdown for display
+function formatCountdown(time: { hours: number; minutes: number; seconds: number; total: number }): string {
+  if (time.total <= 0) return ''
+
+  const pad = (n: number) => n.toString().padStart(2, '0')
+
+  if (time.hours > 0) {
+    return `${time.hours}h ${pad(time.minutes)}m ${pad(time.seconds)}s`
+  }
+  return `${pad(time.minutes)}m ${pad(time.seconds)}s`
 }
 
 function App() {
@@ -44,6 +70,7 @@ function App() {
   const [timeLocked, setTimeLocked] = useState(isPastLockoutTime())
   const [viewMode, setViewMode] = useState<ViewMode>('predictions')
   const [lastUpdate, setLastUpdate] = useState<Date | null>(null)
+  const [countdown, setCountdown] = useState(getTimeRemaining())
 
   // Handle real-time winner updates
   const handleWinnerChange = useCallback((payload: RealtimePostgresChangesPayload<Winner>) => {
@@ -87,13 +114,15 @@ function App() {
     // Set up real-time subscription
     const channel = subscribeToWinners(handleWinnerChange)
 
-    // Check time lock every minute
-    const checkTimeLock = () => {
-      if (isPastLockoutTime()) {
+    // Update countdown every second and check for time lock
+    const updateCountdown = () => {
+      const remaining = getTimeRemaining()
+      setCountdown(remaining)
+      if (remaining.total <= 0) {
         setTimeLocked(true)
       }
     }
-    const interval = setInterval(checkTimeLock, 60000)
+    const interval = setInterval(updateCountdown, 1000)
 
     // Cleanup
     return () => {
@@ -242,18 +271,26 @@ function App() {
               </form>
             </div>
           ) : (
-            <form onSubmit={handleLogin}>
-              <input
-                type="text"
-                placeholder="Enter your name"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                autoFocus
-              />
-              <button type="submit" className="btn-gold">
-                Start
-              </button>
-            </form>
+            <>
+              {countdown.total > 0 && (
+                <div className="countdown-banner">
+                  <span className="countdown-label">Lockout in</span>
+                  <span className="countdown-time">{formatCountdown(countdown)}</span>
+                </div>
+              )}
+              <form onSubmit={handleLogin}>
+                <input
+                  type="text"
+                  placeholder="Enter your name"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  autoFocus
+                />
+                <button type="submit" className="btn-gold">
+                  Start
+                </button>
+              </form>
+            </>
           )}
         </div>
       </div>
@@ -418,7 +455,14 @@ function App() {
           </>
         ) : (
           <>
-            Select your prediction for each category
+            <div className="status-row">
+              <span>Select your prediction for each category</span>
+              {countdown.total > 0 && (
+                <span className="countdown">
+                  Locks in {formatCountdown(countdown)}
+                </span>
+              )}
+            </div>
             <div className="progress-text">{selectedCount}/{totalCategories} categories</div>
           </>
         )}
