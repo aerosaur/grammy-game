@@ -437,7 +437,7 @@ function App() {
       <div className="score-board">
         <div className="user-info">
           <span className="username">{displayName}</span>
-          <button className="btn-small" onClick={logout}>Exit</button>
+          <button className="btn-small" onClick={logout}>Log Out</button>
         </div>
         <div className="score-display">
           {revealed ? (

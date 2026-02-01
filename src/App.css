@@ -209,7 +209,8 @@
   font-size: 12px;
   color: var(--text-secondary);
   text-align: center;
-  margin-bottom: var(--space-5);
+  margin-top: var(--space-4);
+  margin-bottom: 0;
   line-height: 1.5;
 }
 
@@ -453,6 +454,7 @@ button {
 
 .btn-google svg {
   flex-shrink: 0;
+  margin-right: var(--space-3);
 }
 
 .locked-badge {
