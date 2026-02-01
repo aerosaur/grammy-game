@@ -551,6 +551,9 @@ function App() {
 
       <footer>
         CBS / 8PM ET / Good luck
+        <div className="footer-credit">
+          Made by <a href="https://miichaelbowley.com/contact/" target="_blank" rel="noopener noreferrer">Michael Bowley</a>
+        </div>
       </footer>
     </div>
   )

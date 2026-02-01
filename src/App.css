@@ -693,6 +693,22 @@ footer {
   margin-top: var(--space-6);
 }
 
+.footer-credit {
+  margin-top: var(--space-3);
+  font-size: 10px;
+  letter-spacing: 0.03em;
+}
+
+.footer-credit a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.1s;
+}
+
+.footer-credit a:hover {
+  color: var(--accent);
+}
+
 /* Mobile Responsive
    ========================================================================== */
 
